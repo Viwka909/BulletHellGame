@@ -15,7 +15,7 @@ public class ParticleSys : MonoBehaviour
     public Material material;
     public float spin_speed;
     private float time;
-    
+
 
 
 
@@ -26,21 +26,23 @@ public class ParticleSys : MonoBehaviour
         Summon();
     }
 
-    private void FixedUpdate() {
+    private void FixedUpdate()
+    {
         time += Time.fixedDeltaTime;
-        transform.rotation = Quaternion.Euler(0,0,time * spin_speed);
+        transform.rotation = Quaternion.Euler(0, 0, time * spin_speed);
     }
     void Summon()
     {
         angle = 360 / numer_of_colums;
         for (int i = 0; i < numer_of_colums; i++)
         {
-            // A simple particle material with no texture.
+
             Material particleMaterial = material;
 
-            // Create a green Particle System.
+
             var go = new GameObject("Particle System");
-            go.transform.Rotate(angle * i, 90, 0); // Rotate so the system emits upwards.
+            go.transform.Rotate(angle * i, 90, 0);
+            go.AddComponent<CollisionEner>();
             go.transform.parent = this.transform;
             go.transform.position = this.transform.position;
             system = go.AddComponent<ParticleSystem>();
@@ -50,6 +52,16 @@ public class ParticleSys : MonoBehaviour
             mainModule.startSize = 0.5f;
             mainModule.startSpeed = speed;
             mainModule.maxParticles = 100000;
+
+            var coll = system.collision;
+            coll.enabled = true;
+            coll.type = ParticleSystemCollisionType.World;
+            coll.mode = ParticleSystemCollisionMode.Collision2D;
+            coll.sendCollisionMessages = true;
+            coll.lifetimeLoss = 1.0f;
+
+            
+            
             mainModule.simulationSpace = ParticleSystemSimulationSpace.World;
 
             var emission = system.emission;
@@ -59,13 +71,13 @@ public class ParticleSys : MonoBehaviour
             form.enabled = true;
             form.shapeType = ParticleSystemShapeType.Sprite;
             form.sprite = null;
-            
-           
+
+
             var text = system.textureSheetAnimation;
             text.enabled = true;
             text.mode = ParticleSystemAnimationMode.Sprites;
             text.AddSprite(texture);
-            
+
         }
 
 
@@ -89,5 +101,14 @@ public class ParticleSys : MonoBehaviour
         }
 
     }
+ 
+
+
+   
+
+    
+
+
 }
+
 

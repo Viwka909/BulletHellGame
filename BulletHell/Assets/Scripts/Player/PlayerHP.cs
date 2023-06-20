@@ -2,23 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class PlayerHP : MonoBehaviour
 {
     public int hp = 5;
     public void TakeDamage(int dmg)
     {
         hp -= dmg;
         if (hp <= 0)
-        { 
+        {
             Die();
         }
     }
 
-     void Die(){
+    void Die()
+    {
         Destroy(gameObject);
-     }   
-
-
-
-
+    }
+   
 }
