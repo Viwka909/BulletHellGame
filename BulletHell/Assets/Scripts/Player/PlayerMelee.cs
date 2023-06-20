@@ -8,6 +8,7 @@ public class PlayerMelee : MonoBehaviour
     float firerate = 0.5f;
     float canfire = 0.5f;
     public Collider2D hitbox;
+    public GameObject Swrod;
     void Update()
     {
         if (Input.GetKey(KeyCode.Mouse0) && Time.time > canfire)
@@ -18,7 +19,7 @@ public class PlayerMelee : MonoBehaviour
 
         void Swing()
         {
-            hitbox.
+            Swrod.SetActive(true);
         }
     }
 }
