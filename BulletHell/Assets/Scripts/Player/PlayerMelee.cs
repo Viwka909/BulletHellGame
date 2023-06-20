@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerMelee : MonoBehaviour
 {
-    public int dmg = 3;
+     public Animator Swipe;
+    public int swrddmg = 10;
     float firerate = 0.5f;
     float canfire = 0.5f;
     public Collider2D hitbox;
@@ -13,6 +14,7 @@ public class PlayerMelee : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Mouse0) && Time.time > canfire)
         {
+            
             Swing();
             canfire = Time.time + firerate;
         }
@@ -20,6 +22,16 @@ public class PlayerMelee : MonoBehaviour
         void Swing()
         {
             Swrod.SetActive(true);
+            Swipe.SetTrigger("Swing");
         }
+        
+    }
+     void OnTriggerEnter2D(Collider2D hitInfo)
+    {
+        Enemy enemy = hitInfo.GetComponent<Enemy>();
+        if (enemy != null){
+            enemy.TakeDamage(swrddmg);
+        }
+        
     }
 }

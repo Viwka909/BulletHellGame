@@ -12,6 +12,6 @@ public class CollisionEner : MonoBehaviour
         {
             player.TakeDamage(1);
         }
-        Destroy(gameObject);
+        
     }
 }

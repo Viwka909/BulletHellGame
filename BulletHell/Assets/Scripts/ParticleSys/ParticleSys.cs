@@ -55,10 +55,12 @@ public class ParticleSys : MonoBehaviour
 
             var coll = system.collision;
             coll.enabled = true;
+            //coll.collidesWith = 6;
             coll.type = ParticleSystemCollisionType.World;
             coll.mode = ParticleSystemCollisionMode.Collision2D;
             coll.sendCollisionMessages = true;
             coll.lifetimeLoss = 1.0f;
+            
 
             
             
